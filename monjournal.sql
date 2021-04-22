@@ -1,4 +1,5 @@
-CREATE USER 'monjournal'@'localhost' IDENTIFIED VIA mysql_native_password USING 'password';GRANT USAGE ON *.* TO 'monjournal'@'localhost' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
+CREATE USER IF NOT EXISTS 'monjournal'@'localhost' IDENTIFIED BY 'password';
+GRANT USAGE ON *.* TO 'monjournal'@'localhost';
 
 CREATE DATABASE IF NOT EXISTS `monjournal`;
 
@@ -6,7 +7,7 @@ GRANT ALL PRIVILEGES ON `monjournal`.* TO 'monjournal'@'localhost';
 
 USE `monjournal`;
 
-CREATE TABLE `monjournal`.`auteur` ( 
+CREATE TABLE IF NOT EXISTS `monjournal`.`auteur` ( 
 	`identifiant` VARCHAR(50) NOT NULL , 
 	`motdepasse` VARCHAR(200) NOT NULL , 
 	`prenom` VARCHAR(50) NOT NULL , 
@@ -14,7 +15,7 @@ CREATE TABLE `monjournal`.`auteur` (
 	PRIMARY KEY (`identifiant`)
 ) ENGINE = InnoDB;
 
-CREATE TABLE `monjournal`.`article` (
+CREATE TABLE IF NOT EXISTS `monjournal`.`article` (
 	`id` INT NOT NULL AUTO_INCREMENT , 
 	`titre` VARCHAR(255) NOT NULL , 
 	`intro` TEXT NOT NULL , 
